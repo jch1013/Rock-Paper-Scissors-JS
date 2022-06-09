@@ -21,10 +21,68 @@ function computerPlay() {
 
 function playRound() {
 
-    let playerMove = prompt("Please enter your move: ").toLowerCase()
+    let playerMove = prompt("Please enter your move: ")
+    playerMove = toTitleCase(playerMove)
     let computerMove = computerPlay()
     let outcome = ""
+
     if (playerMove === computerMove) {
+        return "It's a Tie!"
+    } else if (playerMove === 'Rock' && computerMove === 'Paper') {
+        outcome = "You Lose!"
+    } else if (playerMove === 'Rock' && computerMove === 'Scissors') {
+        outcome = "You Win!"
+    } else if (playerMove === 'Paper' && computerMove === 'Rock') {
+        outcome = "You Win!"
+    } else if (playerMove === 'Paper' && computerMove === 'Scissors') {
+        outcome = "You Lose!"
+    } else if (playerMove === 'Scissors' && computerMove === 'Rock') {
+        outcome = "You Lose!"
+    } else if (playerMove === 'Scissors' && computerMove === 'Paper') {
+        outcome = "You Win!"
+    } 
+
+    let winMove = ""
+    let loseMove = ""
+
+    if (outcome == "You Win!") {
+        winMove = playerMove
+        loseMove = computerMove
+    } else if (outcome == "You Lose!") {
+        winMove = computerMove
+        loseMove = playerMove
+    }
+
+    return outcome + ` ${winMove} beats ${loseMove}`
+}
+
+function game() {
+    let computerWins = 0
+    let playerWins = 0
+    let result = ""
+
+    for (let i = 0; i < 5; i++) {
+
+        result = playRound()
+
+        if (result.substring(0,9) == "You Lose!") {
+
+            computerWins++
+        } else if (result.substring(0,8) == "You Win!") {
+            playerWins++
+        }
+        console.log(result)
 
     }
+    if (playerWins > computerWins) {
+        console.log(`Player wins ${playerWins} to ${computerWins}!`)
+    } else if (playerWins < computerWins) {
+        console.log(`Computer wins ${computerWins} to ${playerWins}!`)
+    } else {
+        console.log(`Player and Computer tied ${playerWins} to ${computerWins} `)
+    }
+
+
 }
+
+game()
