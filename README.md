@@ -1,2 +1,2 @@
 # Rock-Paper-Scissors-JS
-Basic intro JS project 
+This Project is a basic project created  to practice basic JS concepts such as defining variables and functions
