@@ -61,7 +61,7 @@ function game() {
     let playerWins = 0
     let result = ""
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 1; i++) {
 
         result = playRound()
 
