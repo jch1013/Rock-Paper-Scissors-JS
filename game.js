@@ -19,10 +19,8 @@ function computerPlay() {
 }
 
 
-function playRound() {
-
-    let playerMove = prompt("Please enter your move: ")
-    playerMove = toTitleCase(playerMove)
+function playRound(playerMove) {
+    
     let computerMove = computerPlay()
     let outcome = ""
 
@@ -53,36 +51,27 @@ function playRound() {
         loseMove = playerMove
     }
 
-    return outcome + ` ${winMove} beats ${loseMove}`
-}
-
-function game() {
-    let computerWins = 0
-    let playerWins = 0
-    let result = ""
-
-    for (let i = 0; i < 1; i++) {
-
-        result = playRound()
-
-        if (result.substring(0,9) == "You Lose!") {
-
-            computerWins++
-        } else if (result.substring(0,8) == "You Win!") {
-            playerWins++
-        }
-        console.log(result)
-
-    }
-    if (playerWins > computerWins) {
-        console.log(`Player wins ${playerWins} to ${computerWins}!`)
-    } else if (playerWins < computerWins) {
-        console.log(`Computer wins ${computerWins} to ${playerWins}!`)
-    } else {
-        console.log(`Player and Computer tied ${playerWins} to ${computerWins} `)
-    }
+    const results = document.querySelector('.results');
+    results.textContent = (outcome + ` ${winMove} beats ${loseMove}`);
+    document.appendChild(results)
 
 
 }
 
-game()
+
+const rbtn = document.querySelector('#rock')
+rbtn.addEventListener('click', function(e){
+    playRound('Rock')
+
+});
+
+const pbtn = document.querySelector('#paper')
+pbtn.addEventListener('click', function(e){
+    playRound('Paper')
+});
+
+const sbtn = document.querySelector('#scissors')
+sbtn.addEventListener('click', function(e){
+    playRound('Scissors')
+});
+
